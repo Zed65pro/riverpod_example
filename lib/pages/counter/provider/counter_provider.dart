@@ -1,4 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'counter_provider.g.dart';
 
 class CounterState {
   CounterState({this.count = 0});
@@ -13,9 +15,10 @@ class CounterState {
   }
 }
 
-class CounterNotifier extends Notifier<CounterState> {
+@riverpod
+class CounterNotifier extends _$CounterNotifier {
   @override
-  build() {
+  CounterState build() {
     return CounterState();
   }
 
@@ -27,7 +30,3 @@ class CounterNotifier extends Notifier<CounterState> {
     state = state.copyWith(count: state.count - decrementNumber);
   }
 }
-
-final counterNotifierProvider = NotifierProvider<CounterNotifier, CounterState>(() {
-  return CounterNotifier();
-});

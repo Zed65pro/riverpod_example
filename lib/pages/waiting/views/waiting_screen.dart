@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_app/pages/counter/provider/counter_provider.dart';
+import '../../counter/provider/counter_provider.dart';
 
-import '../../waiting/views/waiting_screen.dart';
-
-class CounterScreen extends ConsumerWidget {
-  const CounterScreen({super.key});
+class WaitingScreen extends ConsumerWidget {
+  const WaitingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +19,7 @@ class CounterScreen extends ConsumerWidget {
             children: [
               const SizedBox(height: 26),
               const Text(
-                'Counter App',
+                'Test screen to check counter state in another scope',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -40,16 +38,11 @@ class CounterScreen extends ConsumerWidget {
                 },
                 child: const Text('Decrement'),
               ),
-              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ProviderScope(overrides: [counterNotifierProvider], child: const WaitingScreen())
-                    ),
-                  );
+                  Navigator.of(context).pop();
                 },
-                child: const Text('Visit next route'),
+                child: const Text('Pop'),
               ),
             ],
           ),
