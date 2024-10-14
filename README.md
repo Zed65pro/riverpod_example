@@ -42,3 +42,9 @@ if you use code gen then provider is AutoDispose automatically otherwise need to
 However if you want to override an instance of a provider (multiple instances) do something like ProviderScope(overrides: [counterNotifierProvider], child: const WaitingScreen())
 
 Basically creating an extra layer of (scope). and you explicitly mention that you want to override that particular provider.
+
+
+
+To start code gen automatically use the command: dart run build_runner watch
+
+after every save it will listen to changes and generate new code if necessary
