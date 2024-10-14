@@ -15,6 +15,9 @@ class CounterState {
   }
 }
 
+// Decorator makes it generate provider, you provide "part 'counter_provider.g.dart'; g is a standard indication that its generated
+// _$CounterNotifier comes from the generated part you can do it even before codegen by _$classnotifiername
+// and even i nthe view it generates usually with naming like the class name plus Provider
 @riverpod
 class CounterNotifier extends _$CounterNotifier {
   @override

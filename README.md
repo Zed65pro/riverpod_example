@@ -48,3 +48,5 @@ Basically creating an extra layer of (scope). and you explicitly mention that yo
 To start code gen automatically use the command: dart run build_runner watch
 
 after every save it will listen to changes and generate new code if necessary
+
+
