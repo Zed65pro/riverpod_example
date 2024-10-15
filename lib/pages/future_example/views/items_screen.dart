@@ -8,7 +8,7 @@ class ItemsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Watch the ItemsNotifier provider to get the list of items
-    final itemsAsync = ref.watch(itemsNotifierProvider);
+    final itemsAsync = ref.watch(itemsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -46,9 +46,9 @@ class ItemsView extends ConsumerWidget {
         return AlertDialog(
           title: Text(item),
           content: Consumer(builder: (context, ref, child) {
-            final itemDetailAsync = ref.watch(itemDetailNotifierProvider(item));
+            final itemDetailAsync = ref.watch(itemDetailProvider(item));
             return itemDetailAsync.when(
-              data: (detail) => Text(detail),
+              data: (detail) => Text(detail.join(' ')),
               loading: () => const CircularProgressIndicator(),
               error: (err, stack) => Text('Error: $err'),
             );

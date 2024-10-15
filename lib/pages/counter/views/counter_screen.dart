@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/pages/counter/provider/counter_provider.dart';
+import 'package:my_app/pages/form_person_example/views/person_view.dart';
 import 'package:my_app/pages/future_example/views/items_screen.dart';
 
 import '../../waiting/views/waiting_screen.dart';
@@ -59,6 +60,14 @@ class CounterScreen extends ConsumerWidget {
                   );
                 },
                 child: const Text('Visit future example'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const PersonListView()),
+                  );
+                },
+                child: const Text('Visit form example'),
               ),
             ],
           ),

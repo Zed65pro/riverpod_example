@@ -6,24 +6,21 @@ part of 'items_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$itemsNotifierHash() => r'cfa20eb47336a47dcfdc25270003ac25b818d13a';
+String _$itemsHash() => r'eeea9e177380c871af3cbc3e00f19d35b84d5d11';
 
-/// See also [ItemsNotifier].
-@ProviderFor(ItemsNotifier)
-final itemsNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<ItemsNotifier, List<String>>.internal(
-  ItemsNotifier.new,
-  name: r'itemsNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$itemsNotifierHash,
+/// See also [items].
+@ProviderFor(items)
+final itemsProvider = AutoDisposeFutureProvider<List<String>>.internal(
+  items,
+  name: r'itemsProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$itemsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ItemsNotifier = AutoDisposeAsyncNotifier<List<String>>;
-String _$itemDetailNotifierHash() =>
-    r'98489e302ef4b40c1391edea016ad0863ac0faaa';
+typedef ItemsRef = AutoDisposeFutureProviderRef<List<String>>;
+String _$itemDetailHash() => r'a8bbc33927ccb4a9189785cc5d36003d1d410262';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -46,36 +43,27 @@ class _SystemHash {
   }
 }
 
-abstract class _$ItemDetailNotifier
-    extends BuildlessAutoDisposeAsyncNotifier<String> {
-  late final String selectedItem;
+/// See also [itemDetail].
+@ProviderFor(itemDetail)
+const itemDetailProvider = ItemDetailFamily();
 
-  FutureOr<String> build(
-    String selectedItem,
-  );
-}
+/// See also [itemDetail].
+class ItemDetailFamily extends Family<AsyncValue<List<String>>> {
+  /// See also [itemDetail].
+  const ItemDetailFamily();
 
-/// See also [ItemDetailNotifier].
-@ProviderFor(ItemDetailNotifier)
-const itemDetailNotifierProvider = ItemDetailNotifierFamily();
-
-/// See also [ItemDetailNotifier].
-class ItemDetailNotifierFamily extends Family<AsyncValue<String>> {
-  /// See also [ItemDetailNotifier].
-  const ItemDetailNotifierFamily();
-
-  /// See also [ItemDetailNotifier].
-  ItemDetailNotifierProvider call(
+  /// See also [itemDetail].
+  ItemDetailProvider call(
     String selectedItem,
   ) {
-    return ItemDetailNotifierProvider(
+    return ItemDetailProvider(
       selectedItem,
     );
   }
 
   @override
-  ItemDetailNotifierProvider getProviderOverride(
-    covariant ItemDetailNotifierProvider provider,
+  ItemDetailProvider getProviderOverride(
+    covariant ItemDetailProvider provider,
   ) {
     return call(
       provider.selectedItem,
@@ -94,30 +82,32 @@ class ItemDetailNotifierFamily extends Family<AsyncValue<String>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'itemDetailNotifierProvider';
+  String? get name => r'itemDetailProvider';
 }
 
-/// See also [ItemDetailNotifier].
-class ItemDetailNotifierProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<ItemDetailNotifier, String> {
-  /// See also [ItemDetailNotifier].
-  ItemDetailNotifierProvider(
+/// See also [itemDetail].
+class ItemDetailProvider extends AutoDisposeFutureProvider<List<String>> {
+  /// See also [itemDetail].
+  ItemDetailProvider(
     String selectedItem,
   ) : this._internal(
-          () => ItemDetailNotifier()..selectedItem = selectedItem,
-          from: itemDetailNotifierProvider,
-          name: r'itemDetailNotifierProvider',
+          (ref) => itemDetail(
+            ref as ItemDetailRef,
+            selectedItem,
+          ),
+          from: itemDetailProvider,
+          name: r'itemDetailProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$itemDetailNotifierHash,
-          dependencies: ItemDetailNotifierFamily._dependencies,
+                  : _$itemDetailHash,
+          dependencies: ItemDetailFamily._dependencies,
           allTransitiveDependencies:
-              ItemDetailNotifierFamily._allTransitiveDependencies,
+              ItemDetailFamily._allTransitiveDependencies,
           selectedItem: selectedItem,
         );
 
-  ItemDetailNotifierProvider._internal(
+  ItemDetailProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -130,20 +120,13 @@ class ItemDetailNotifierProvider
   final String selectedItem;
 
   @override
-  FutureOr<String> runNotifierBuild(
-    covariant ItemDetailNotifier notifier,
+  Override overrideWith(
+    FutureOr<List<String>> Function(ItemDetailRef provider) create,
   ) {
-    return notifier.build(
-      selectedItem,
-    );
-  }
-
-  @override
-  Override overrideWith(ItemDetailNotifier Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ItemDetailNotifierProvider._internal(
-        () => create()..selectedItem = selectedItem,
+      override: ItemDetailProvider._internal(
+        (ref) => create(ref as ItemDetailRef),
         from: from,
         name: null,
         dependencies: null,
@@ -155,15 +138,13 @@ class ItemDetailNotifierProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ItemDetailNotifier, String>
-      createElement() {
-    return _ItemDetailNotifierProviderElement(this);
+  AutoDisposeFutureProviderElement<List<String>> createElement() {
+    return _ItemDetailProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ItemDetailNotifierProvider &&
-        other.selectedItem == selectedItem;
+    return other is ItemDetailProvider && other.selectedItem == selectedItem;
   }
 
   @override
@@ -175,19 +156,17 @@ class ItemDetailNotifierProvider
   }
 }
 
-mixin ItemDetailNotifierRef on AutoDisposeAsyncNotifierProviderRef<String> {
+mixin ItemDetailRef on AutoDisposeFutureProviderRef<List<String>> {
   /// The parameter `selectedItem` of this provider.
   String get selectedItem;
 }
 
-class _ItemDetailNotifierProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<ItemDetailNotifier, String>
-    with ItemDetailNotifierRef {
-  _ItemDetailNotifierProviderElement(super.provider);
+class _ItemDetailProviderElement
+    extends AutoDisposeFutureProviderElement<List<String>> with ItemDetailRef {
+  _ItemDetailProviderElement(super.provider);
 
   @override
-  String get selectedItem =>
-      (origin as ItemDetailNotifierProvider).selectedItem;
+  String get selectedItem => (origin as ItemDetailProvider).selectedItem;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
