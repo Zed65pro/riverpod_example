@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/pages/counter/provider/counter_provider.dart';
 import 'package:my_app/pages/form_person_example/views/person_view.dart';
 import 'package:my_app/pages/future_example/views/items_screen.dart';
+import 'package:my_app/pages/list_filter_example/views/film_list_page.dart';
 
 import '../../waiting/views/waiting_screen.dart';
 
@@ -68,6 +69,14 @@ class CounterScreen extends ConsumerWidget {
                   );
                 },
                 child: const Text('Visit form example'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const FilmListPage()),
+                  );
+                },
+                child: const Text('Visit film list example'),
               ),
             ],
           ),
