@@ -9,8 +9,6 @@ class CounterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final counter = ref.watch(counterNotifierProvider);
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade300,
@@ -25,7 +23,10 @@ class CounterScreen extends ConsumerWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
-              Text('Current count: ${counter.count}'),
+              Consumer(builder: (context, ref, child) { // Using consumer is just like using Obx rather than building the entire thing
+                final counter = ref.watch(counterNotifierProvider);
+                return Text('Current count: ${counter.count}');
+              }),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
@@ -44,9 +45,7 @@ class CounterScreen extends ConsumerWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ProviderScope(overrides: [counterNotifierProvider], child: const WaitingScreen())
-                    ),
+                    MaterialPageRoute(builder: (context) => ProviderScope(overrides: [counterNotifierProvider], child: const WaitingScreen())),
                   );
                 },
                 child: const Text('Visit next route'),

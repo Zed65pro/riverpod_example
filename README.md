@@ -29,7 +29,9 @@ pages->
 state object is a model with all states aka loading, items etc
 view will most likely be a consumerWidget which uses ref.watch controller provider
 
-and works normally without having to use something like obx to wrap around changes
+to make rebuild on a specific part wrap with Consumer(builder(context,ref,child) {})
+basically works like Obx here you can watch in this consumer scope to rebild this specific part
+according to only the ref watch inside it
 
 
 SCOPE:
