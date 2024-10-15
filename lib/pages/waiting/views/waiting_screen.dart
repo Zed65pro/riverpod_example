@@ -11,6 +11,7 @@ class WaitingScreen extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         backgroundColor: Colors.grey.shade300,
         body: SizedBox(
           width: double.infinity,

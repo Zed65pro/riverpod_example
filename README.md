@@ -52,3 +52,12 @@ To start code gen automatically use the command: dart run build_runner watch
 after every save it will listen to changes and generate new code if necessary
 
 
+
+
+you can wrap @Riverpod(keepAlive: true) instead of normal @riverpod
+if you want the provider to stay alive always and not succumb to normal auto-dispose behaviour
+because by default keep alive is false, where riverpod disposes providers that are no longer
+listened to, so sometimes if we have a provider which contains vital info that is required accross the app but sometimes
+you route to another page and remove the page which used to listen to it from the route stack. thus disposing it when it is needed
+
+
