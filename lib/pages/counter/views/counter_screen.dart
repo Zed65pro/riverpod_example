@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_app/pages/counter/provider/counter_provider.dart';
+import 'package:my_app/pages/future_example/views/items_screen.dart';
 
 import '../../waiting/views/waiting_screen.dart';
 
@@ -23,7 +24,8 @@ class CounterScreen extends ConsumerWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
-              Consumer(builder: (context, ref, child) { // Using consumer is just like using Obx rather than building the entire thing
+              Consumer(builder: (context, ref, child) {
+                // Using consumer is just like using Obx rather than building the entire thing
                 final counter = ref.watch(counterNotifierProvider);
                 return Text('Current count: ${counter.count}');
               }),
@@ -48,7 +50,15 @@ class CounterScreen extends ConsumerWidget {
                     MaterialPageRoute(builder: (context) => ProviderScope(overrides: [counterNotifierProvider], child: const WaitingScreen())),
                   );
                 },
-                child: const Text('Visit next route'),
+                child: const Text('Visit counter provider override example'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const ItemsView()),
+                  );
+                },
+                child: const Text('Visit future example'),
               ),
             ],
           ),
